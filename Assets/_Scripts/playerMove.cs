@@ -49,8 +49,9 @@ public class playerMove : MonoBehaviour
    
    public float vSliderValue = 5.5f;
    
-   //Coin
-   
+   //Font
+   public GUIStyle myStyle = null;
+  
    void Awake()
    {
        if(playerMove.brain == null)
@@ -62,6 +63,7 @@ public class playerMove : MonoBehaviour
        {
            Destroy(gameObject);
        }
+       
    }
 
 
@@ -80,6 +82,9 @@ public class playerMove : MonoBehaviour
         {
             buyEnabled[i] = true;
         }
+    //Font
+    myStyle.fontSize = (int)(80.0f * (float)(Screen.width) / 1920.0f);
+     
     }
 
 
@@ -294,40 +299,46 @@ public class playerMove : MonoBehaviour
    {
        if (openShop && !openMuseum)
        {
+           
            GUI.backgroundColor = new Color(0,0,0,0);
            GUI.DrawTexture(new Rect(100, 100, 900, 2000), aTexture, ScaleMode.ScaleToFit, true, 0.0F);
+           GUI.Label(new Rect(450, 300, 200, 100), "Shop", myStyle);
+       
            GUI.enabled = buyEnabled[1];
-           if (GUI.Button(new Rect(250, 390, 128, 128), btnTextures[0]))
+           if (GUI.Button(new Rect(250, 390, 128, 128), new GUIContent("1",btnTextures[0])))
                addRope(1);
            GUI.enabled = buyEnabled[2];
-           if (GUI.Button(new Rect(400, 390, 128, 128), btnTextures[1]))
+           if (GUI.Button(new Rect(400, 390, 128, 128), new GUIContent("2",btnTextures[1])))
                addRope(2);
            GUI.enabled = buyEnabled[3];
-           if (GUI.Button(new Rect(550, 390, 128, 128), btnTextures[2]))
+           if (GUI.Button(new Rect(550, 390, 128, 128), new GUIContent("3",btnTextures[2])))
                addRope(3);
            GUI.enabled = buyEnabled[4];
-           if (GUI.Button(new Rect(700, 390, 128, 128), btnTextures[3]))
+           if (GUI.Button(new Rect(700, 390, 128, 128), new GUIContent("4",btnTextures[3])))
                addRope(4);
        
 
            GUI.enabled = buyEnabled[5];
-           if (GUI.Button(new Rect(250, 740, 128, 128), btnTextures[4]))
+           if (GUI.Button(new Rect(250, 740, 128, 128), new GUIContent("5",btnTextures[4], "This Costs 5 Coins.")))
            {
                addRope(5);
                Debug.Log("amt 5");
            }
+           GUI.Label(new Rect(10, 40, 100, 40), GUI.tooltip);
                
            GUI.enabled = buyEnabled[6];
-           if (GUI.Button(new Rect(400, 740, 128, 128), btnTextures[5]))
+           if (GUI.Button(new Rect(400, 740, 128, 128),new GUIContent("6",btnTextures[5])))
                addRope(6);
+        
            GUI.enabled = buyEnabled[7];
-           if (GUI.Button(new Rect(550, 740, 128, 128), btnTextures[6]))
+           if (GUI.Button(new Rect(550, 740, 128, 128),new GUIContent("7",btnTextures[6])))
                addRope(7);
            GUI.enabled = buyEnabled[8];
-           if (GUI.Button(new Rect(700, 740, 128, 128), btnTextures[7]))
+           if (GUI.Button(new Rect(700, 740, 128, 128), new GUIContent("8",btnTextures[7])))
            {
                addRope(8);
                Debug.Log("amt 8");
+               
            }
 
            
@@ -357,9 +368,7 @@ public class playerMove : MonoBehaviour
        {
            GUI.backgroundColor = new Color(0,0,0,0);
            GUI.DrawTexture(new Rect(100, 100, 900, 2000), aTexture2, ScaleMode.ScaleToFit, true, 0.0F);
-          
-               if (GUI.Button(new Rect(250, 390, 128, 128), btnTextures2[0]))
-                   Debug.Log("Clicked the button with an Image1");
+         
                if (GUI.Button(new Rect(400, 390, 128, 128), btnTextures2[1]))
                    Debug.Log("Clicked the button with an Image1");
                if (GUI.Button(new Rect(550, 390, 128, 128), btnTextures2[2]))
