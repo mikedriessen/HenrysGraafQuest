@@ -34,6 +34,7 @@ public class Artifact : MonoBehaviour
                     AudioManagerScript.PlaySound("Pickup");
                     hit.collider.gameObject.SetActive(false);
                 count++;
+                playerMove.brain.addCoins(5);
                 SetCountText();
             }
             }

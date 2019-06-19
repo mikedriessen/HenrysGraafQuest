@@ -36,17 +36,18 @@ public class MovingBackground : MonoBehaviour
         GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
 
         quads[0] = createQuad(quad, new Vector3(0.5f, 0, 0), new Vector3(0, 90, 0), "plus x",
-            new Color(0,0,0, 0), labels[0]);
+            new Color(0.20f, 0.10f, 0.10f, 1), labels[0]);
         quads[1] = createQuad(quad, new Vector3(0, 0.5f, 0), new Vector3(-90, 0, 0), "plus y",
-            new Color(0,0,0, 0), labels[1]);
+            new Color(0.20f, 0.10f, 0.10f, 1), labels[1]);
         quads[2] = createQuad(quad, new Vector3(0, 0, 0.5f), new Vector3(0, 0, 0), "plus z",
-            new Color(0,0,0, 0), labels[2]);
+            new Color(0.20f, 0.10f, 0.10f, 1), labels[2]);
         quads[3] = createQuad(quad, new Vector3(-0.5f, 0, 0), new Vector3(0, -90, 0), "neg x",
-            new Color(0,0,0, 0), labels[3]);
+            new Color(0.20f, 0.10f, 0.10f, 1), labels[3]);
         quads[4] = createQuad(quad, new Vector3(0, -0.5f, 0), new Vector3(90, 0, 0), "neg y",
-            new Color(0,0,0, 0), labels[4]);
+            new Color(0.20f, 0.10f, 0.10f, 1), labels[4]);
         quads[5] = createQuad(quad, new Vector3(0, 0, -0.5f), new Vector3(0, 180, 0), "neg z",
-            new Color(0,0,0, 0), labels[5]);
+            new Color(0.20f, 0.10f, 0.10f, 1), labels[5]);
+     
 
         GameObject.Destroy(quad);
     }
