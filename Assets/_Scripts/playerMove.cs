@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class playerMove : MonoBehaviour
 {
@@ -28,6 +30,9 @@ public class playerMove : MonoBehaviour
     
     private bool openShop;
     private bool openMuseum;
+    //GUI Shop Buttons;
+
+    private bool[] buyEnabled = new bool[14];
     
     //Can still move on rope
     private bool RopeMove = false;
@@ -38,6 +43,9 @@ public class playerMove : MonoBehaviour
    public Texture[] sliderTextures;
    
    public float vSliderValue = 5.5f;
+   
+   //Coin
+   
 
 
     private void Start()
@@ -49,6 +57,12 @@ public class playerMove : MonoBehaviour
 
         openShop = false;
         openMuseum = false;
+        
+        //Enable GUI Buttons
+        for (int i = 0; i < buyEnabled.Length; i++)
+        {
+            buyEnabled[i] = true;
+        }
     }
 
 
@@ -257,45 +271,68 @@ public class playerMove : MonoBehaviour
 
    void OnGUI()
    {
-       if (openShop)
+       if (openShop && !openMuseum)
        {
            GUI.backgroundColor = new Color(0,0,0,0);
            GUI.DrawTexture(new Rect(100, 100, 900, 2000), aTexture, ScaleMode.ScaleToFit, true, 0.0F);
-
+           GUI.enabled = buyEnabled[1];
            if (GUI.Button(new Rect(250, 390, 128, 128), btnTextures[0]))
-               addRope(6); 
-               if (GUI.Button(new Rect(400, 390, 128, 128), btnTextures[1]))
-                   Debug.Log("Clicked the button with an Image1");
-               if (GUI.Button(new Rect(550, 390, 128, 128), btnTextures[2]))
-                   Debug.Log("Clicked the button with an Image1");
-               if (GUI.Button(new Rect(700, 390, 128, 128), btnTextures[3]))
-                   Debug.Log("Clicked the button with an Image1");
-           
+               addRope(1);
+           GUI.enabled = buyEnabled[2];
+           if (GUI.Button(new Rect(400, 390, 128, 128), btnTextures[1]))
+               addRope(2);
+           GUI.enabled = buyEnabled[3];
+           if (GUI.Button(new Rect(550, 390, 128, 128), btnTextures[2]))
+               addRope(3);
+           GUI.enabled = buyEnabled[4];
+           if (GUI.Button(new Rect(700, 390, 128, 128), btnTextures[3]))
+               addRope(4);
+       
 
-        
-               if (GUI.Button(new Rect(250, 740, 128, 128), btnTextures[4]))
-                   Debug.Log("Clicked the button with an Image1");
-               if (GUI.Button(new Rect(400, 740, 128, 128), btnTextures[5]))
-                   Debug.Log("Clicked the button with an Image1");
-               if (GUI.Button(new Rect(550, 740, 128, 128), btnTextures[6]))
-                   Debug.Log("Clicked the button with an Image1");
-               if (GUI.Button(new Rect(700, 740, 128, 128), btnTextures[7]))
-                   Debug.Log("Clicked the button with an Image1");
-           
+           GUI.enabled = buyEnabled[5];
+           if (GUI.Button(new Rect(250, 740, 128, 128), btnTextures[4]))
+           {
+               addRope(5);
+               Debug.Log("amt 5");
+           }
+               
+           GUI.enabled = buyEnabled[6];
+           if (GUI.Button(new Rect(400, 740, 128, 128), btnTextures[5]))
+               addRope(6);
+           GUI.enabled = buyEnabled[7];
+           if (GUI.Button(new Rect(550, 740, 128, 128), btnTextures[6]))
+               addRope(7);
+           GUI.enabled = buyEnabled[8];
+           if (GUI.Button(new Rect(700, 740, 128, 128), btnTextures[7]))
+           {
+               addRope(8);
+               Debug.Log("amt 8");
+           }
 
-          
+           
+           
+//Upgrades
+
+           GUI.enabled = buyEnabled[9];
                if (GUI.Button(new Rect(250, 1100, 128, 128), btnTextures[8]))
-                   Debug.Log("Clicked the button with an Image1");
+                   addRope(9);
+               GUI.enabled = buyEnabled[10];
                if (GUI.Button(new Rect(400, 1100, 128, 128), btnTextures[9]))
-                   Debug.Log("Clicked the button with an Image1");
+                   addRope(10);
+               GUI.enabled = buyEnabled[11];
                if (GUI.Button(new Rect(550, 1100, 128, 128), btnTextures[10]))
-                   Debug.Log("Clicked the button with an Image1");
+                   addRope(11);
+               GUI.enabled = buyEnabled[12];
                if (GUI.Button(new Rect(700, 1100, 128, 128), btnTextures[11]))
-                   Debug.Log("Clicked the button with an Image1");
-           
+                   addRope(12);
+               GUI.enabled = buyEnabled[13];
+               if (GUI.Button(new Rect(700, 1100, 0, 0), btnTextures[11]))
+                   addRope(0);
+         
     
        }
-        if (openMuseum)
+       
+       if (openMuseum && !openShop)
        {
            GUI.backgroundColor = new Color(0,0,0,0);
            GUI.DrawTexture(new Rect(100, 100, 900, 2000), aTexture2, ScaleMode.ScaleToFit, true, 0.0F);
@@ -357,10 +394,17 @@ public class playerMove : MonoBehaviour
    {
        ropeAmt = ropeAmt + amt;
        ropeText.text = ropeAmt.ToString();
+       beenClicked(amt);
 
    }
-   
-   
+
+   private void beenClicked(int amt)
+   {
+           buyEnabled[amt] = false;
+       
+   }
+
+
 
 
 }
