@@ -76,6 +76,7 @@ public class playerMove : MonoBehaviour
                         {
                             ropeAmt--;
                             XPSlider.Brain.AddXP();
+                            AudioManagerScript.PlaySound("StoneBlock");
                         }
                         ropeText.text = ropeAmt.ToString();
                         this.transform.Translate(0, yUp, 0);
@@ -134,6 +135,7 @@ public class playerMove : MonoBehaviour
                         {
                             ropeAmt--;
                             XPSlider.Brain.AddXP();
+                            AudioManagerScript.PlaySound("StoneBlock");
                         }
                         ropeText.text = ropeAmt.ToString();
                         this.transform.Translate(0, yDown, 0);
@@ -174,6 +176,7 @@ public class playerMove : MonoBehaviour
                         {
                             ropeAmt--;
                             XPSlider.Brain.AddXP();
+                            AudioManagerScript.PlaySound("StoneBlock");
                         }
                         ropeText.text = ropeAmt.ToString();
                         this.transform.Translate(xLeft, 0, 0);
@@ -214,6 +217,7 @@ public class playerMove : MonoBehaviour
                         {
                             ropeAmt--;
                             XPSlider.Brain.AddXP();
+                            AudioManagerScript.PlaySound("StoneBlock");
                         }
                         ropeText.text = ropeAmt.ToString();
                         this.transform.Translate(xRight, 0, 0);

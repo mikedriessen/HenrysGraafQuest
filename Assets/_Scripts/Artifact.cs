@@ -31,7 +31,8 @@ public class Artifact : MonoBehaviour
             {
                 
                 Debug.Log("ARTIFACT");
-                hit.collider.gameObject.SetActive(false);
+                    AudioManagerScript.PlaySound("Pickup");
+                    hit.collider.gameObject.SetActive(false);
                 count++;
                 SetCountText();
             }
