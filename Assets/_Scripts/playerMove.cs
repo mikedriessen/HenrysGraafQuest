@@ -8,6 +8,8 @@ using Debug = UnityEngine.Debug;
 
 public class playerMove : MonoBehaviour
 {
+    public static playerMove brain;
+    
     public float xRight = 1f;
     public float xLeft = -1f;
     public float yUp = 1f;
@@ -17,6 +19,9 @@ public class playerMove : MonoBehaviour
 
     private int ropeAmt;
     public Text ropeText;
+    private int coinAmt;
+    public Text coinText;
+    
     private RaycastHit hit_Info;
     private GameObject other;
     public Texture[] btnTextures;
@@ -46,6 +51,18 @@ public class playerMove : MonoBehaviour
    
    //Coin
    
+   void Awake()
+   {
+       if(playerMove.brain == null)
+       {
+           playerMove.brain = this;
+           DontDestroyOnLoad(gameObject);
+       }
+       else
+       {
+           Destroy(gameObject);
+       }
+   }
 
 
     private void Start()
@@ -90,6 +107,7 @@ public class playerMove : MonoBehaviour
                         {
                             ropeAmt--;
                             XPSlider.Brain.AddXP();
+                            addCoins(1);
                         }
                         ropeText.text = ropeAmt.ToString();
                         this.transform.Translate(0, yUp, 0);
@@ -148,6 +166,7 @@ public class playerMove : MonoBehaviour
                         {
                             ropeAmt--;
                             XPSlider.Brain.AddXP();
+                            addCoins(1);
                         }
                         ropeText.text = ropeAmt.ToString();
                         this.transform.Translate(0, yDown, 0);
@@ -188,6 +207,7 @@ public class playerMove : MonoBehaviour
                         {
                             ropeAmt--;
                             XPSlider.Brain.AddXP();
+                            addCoins(1);
                         }
                         ropeText.text = ropeAmt.ToString();
                         this.transform.Translate(xLeft, 0, 0);
@@ -228,6 +248,7 @@ public class playerMove : MonoBehaviour
                         {
                             ropeAmt--;
                             XPSlider.Brain.AddXP();
+                            addCoins(1);
                         }
                         ropeText.text = ropeAmt.ToString();
                         this.transform.Translate(xRight, 0, 0);
@@ -404,8 +425,11 @@ public class playerMove : MonoBehaviour
        
    }
 
-
-
+   public void addCoins(int amt)
+   {
+       coinAmt = coinAmt + amt;
+       coinText.text = coinAmt.ToString();
+   }
 
 }
 

@@ -33,6 +33,7 @@ public class Artifact : MonoBehaviour
                 Debug.Log("ARTIFACT");
                 hit.collider.gameObject.SetActive(false);
                 count++;
+                playerMove.brain.addCoins(5);
                 SetCountText();
             }
             }
